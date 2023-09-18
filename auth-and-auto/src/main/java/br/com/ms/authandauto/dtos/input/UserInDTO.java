@@ -1,35 +1,22 @@
-package br.com.ms.authandauto.entities;
+package br.com.ms.authandauto.dtos.input;
 
+import jakarta.validation.constraints.*;
 
-import jakarta.persistence.*;
-
-@Entity(name="users")
-public class User {
-  public User() {
-  }
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
-  @Column(length = 64, nullable = false)
+public class UserInDTO {
+  @NotBlank(message = "Name cannot be empty.")
   private String name;
-  @Column(unique = true, length = 255, nullable = false)
+  @Email(message = "Must be a valid email.")
+  @NotBlank(message = "Email cannot be empty.")
   private String email;
-  @Column(length = 32, nullable = false)
+  @NotBlank(message = "Password cannot be empty.")
   private String password;
 
-  public User(String name, String email, String password) {
+  public UserInDTO() {}
+
+  public UserInDTO(String name, String email, String password) {
     this.name = name;
     this.email = email;
     this.password = password;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
   }
 
   public String getName() {

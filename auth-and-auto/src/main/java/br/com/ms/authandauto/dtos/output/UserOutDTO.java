@@ -1,15 +1,11 @@
-package br.com.ms.authandauto.dtos;
+package br.com.ms.authandauto.dtos.output;
 
-public class UserDTO {
+public class UserOutDTO {
 
-  public UserDTO() {}
+  public UserOutDTO() {}
   private Long id;
   private String name;
   private String email;
-  public UserDTO(String name, String email) {
-    this.name = name;
-    this.email = email;
-  }
 
   public Long getId() {
     return id;

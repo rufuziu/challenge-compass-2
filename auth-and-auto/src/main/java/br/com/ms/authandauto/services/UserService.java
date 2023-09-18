@@ -1,6 +1,7 @@
 package br.com.ms.authandauto.services;
 
-import br.com.ms.authandauto.dtos.UserDTO;
+import br.com.ms.authandauto.dtos.input.UserInDTO;
+import br.com.ms.authandauto.dtos.output.UserOutDTO;
 import br.com.ms.authandauto.entities.User;
 import br.com.ms.authandauto.exceptions.user.UserEmailAlreadyInUseException;
 import br.com.ms.authandauto.repositories.UserRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class UserService {
   @Autowired
@@ -17,17 +19,19 @@ public class UserService {
   @Autowired
   ModelMapper modelMapper;
 
-  public UserDTO createUser(User user){
-    if(userRepository.findByEmail(user.getEmail()).isPresent()){
+  public UserOutDTO createUser(UserInDTO userIn) {
+    if (userRepository.findByEmail(userIn.getEmail()).isPresent()) {
       String message = new StringBuilder()
-              .append("Email")
-              .append(user.getEmail())
-              .append("is already in use.")
+              .append("Email ")
+              .append(userIn.getEmail())
+              .append(" is already in use.")
               .toString();
       throw new UserEmailAlreadyInUseException(message);
-    }
-    else{
-      return modelMapper.map(userRepository.save(user),UserDTO.class);
+    } else {
+      User user = modelMapper.map(userIn, User.class);
+      return modelMapper.map(
+              userRepository.save(user)
+              , UserOutDTO.class);
     }
   }
 

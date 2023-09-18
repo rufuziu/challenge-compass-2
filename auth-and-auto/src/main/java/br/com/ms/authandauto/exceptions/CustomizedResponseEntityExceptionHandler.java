@@ -14,11 +14,12 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.time.LocalDateTime;
+
 @ControllerAdvice
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
   @ExceptionHandler(Exception.class)
   public final ResponseEntity<ErrorDetails> handleAllException(Exception ex,
-                                                               WebRequest request){
+                                                               WebRequest request) {
     ErrorDetails errorDetails = new ErrorDetails(
             LocalDateTime.now(),
             ex.getMessage(),
@@ -26,9 +27,10 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     );
     return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
   }
+
   @ExceptionHandler(UserEmailAlreadyInUseException.class)
   public final ResponseEntity<ErrorDetails> handleUserEmailAlreadyUsedException(Exception ex,
-                                                                        WebRequest request){
+                                                                                WebRequest request) {
     ErrorDetails errorDetails = new ErrorDetails(
             LocalDateTime.now(),
             ex.getMessage(),
@@ -36,9 +38,10 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     );
     return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.BAD_REQUEST);
   }
+
   @ExceptionHandler(UserNotFoundException.class)
   public final ResponseEntity<ErrorDetails> handleUserNotFoundException(Exception ex,
-                                                                        WebRequest request){
+                                                                        WebRequest request) {
     ErrorDetails errorDetails = new ErrorDetails(
             LocalDateTime.now(),
             ex.getMessage(),
@@ -46,11 +49,15 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     );
     return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
   }
+
   @Override
   protected ResponseEntity<Object> handleMethodArgumentNotValid(
-          MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+          MethodArgumentNotValidException ex,
+          HttpHeaders headers,
+          HttpStatusCode status,
+          WebRequest request) {
     String errors = "";
-    for(int i = 0; i< ex.getErrorCount(); i++){
+    for (int i = 0; i < ex.getErrorCount(); i++) {
       errors = errors.concat(ex.getFieldErrors().get(i).getDefaultMessage().concat(", "));
     }
     ErrorDetails errorDetails = new ErrorDetails(
