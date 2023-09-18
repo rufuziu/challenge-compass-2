@@ -1,7 +1,7 @@
 package br.com.ms.authandauto.exceptions;
 
 import br.com.ms.authandauto.exceptions.errors.ErrorDetails;
-import br.com.ms.authandauto.exceptions.user.UserEmailAlreadyUsedException;
+import br.com.ms.authandauto.exceptions.user.UserEmailAlreadyInUseException;
 import br.com.ms.authandauto.exceptions.user.UserNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -26,7 +26,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     );
     return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
   }
-  @ExceptionHandler(UserEmailAlreadyUsedException.class)
+  @ExceptionHandler(UserEmailAlreadyInUseException.class)
   public final ResponseEntity<ErrorDetails> handleUserEmailAlreadyUsedException(Exception ex,
                                                                         WebRequest request){
     ErrorDetails errorDetails = new ErrorDetails(

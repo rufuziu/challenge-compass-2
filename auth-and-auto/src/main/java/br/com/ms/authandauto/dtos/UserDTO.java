@@ -1,6 +1,7 @@
 package br.com.ms.authandauto.dtos;
 
 public class UserDTO {
+
   public UserDTO() {}
   private Long id;
   private String name;

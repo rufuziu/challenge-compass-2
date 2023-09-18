@@ -2,7 +2,7 @@ package br.com.ms.authandauto.services;
 
 import br.com.ms.authandauto.dtos.UserDTO;
 import br.com.ms.authandauto.entities.User;
-import br.com.ms.authandauto.exceptions.user.UserEmailAlreadyUsedException;
+import br.com.ms.authandauto.exceptions.user.UserEmailAlreadyInUseException;
 import br.com.ms.authandauto.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class UserService {
               .append(user.getEmail())
               .append("is already in use.")
               .toString();
-      throw new UserEmailAlreadyUsedException(message);
+      throw new UserEmailAlreadyInUseException(message);
     }
     else{
       return modelMapper.map(userRepository.save(user),UserDTO.class);

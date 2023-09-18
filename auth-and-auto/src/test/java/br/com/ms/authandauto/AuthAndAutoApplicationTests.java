@@ -10,4 +10,5 @@ class AuthAndAutoApplicationTests {
 	void contextLoads() {
 	}
 
+
 }
