@@ -1,6 +1,7 @@
 package br.com.ms.authandauto.services;
 
-import br.com.ms.authandauto.dtos.UserDTO;
+import br.com.ms.authandauto.dtos.input.UserInDTO;
+import br.com.ms.authandauto.dtos.output.UserOutDTO;
 import br.com.ms.authandauto.entities.User;
 import br.com.ms.authandauto.exceptions.user.UserEmailAlreadyInUseException;
 import br.com.ms.authandauto.repositories.UserRepository;
@@ -38,11 +39,12 @@ class UserServiceTest {
   void createUser() throws IOException {
     //given
     User user = JsonUtils.getObjectFromFile(USER, User.class);
-    UserDTO userDTO = modelMapper.map(user, UserDTO.class);
+    UserInDTO userIn = modelMapper.map(user, UserInDTO.class);
+    UserOutDTO userOut = modelMapper.map(user, UserOutDTO.class);
     when(userRepository.findByEmail(any())).thenReturn(Optional.empty());
     when(userRepository.save(any())).thenReturn(user);
     //then
-    UserDTO response = userService.createUser(user);
+    UserOutDTO response = userService.createUser(userIn);
     //verify
     assertAll("User created Payload",
             () -> assertEquals(1, response.getId()),
@@ -53,11 +55,12 @@ class UserServiceTest {
   void userEmailAlreadyInUse() throws IOException {
     //given
     User user = JsonUtils.getObjectFromFile(USER, User.class);
+    UserInDTO userIn = modelMapper.map(user, UserInDTO.class);
     when(userRepository.findByEmail(any()))
             .thenReturn(Optional.of(user));
     //then
     assertThrows(UserEmailAlreadyInUseException.class,
-            ()-> userService.createUser(user));
+            ()-> userService.createUser(userIn));
   }
 
   @Test
