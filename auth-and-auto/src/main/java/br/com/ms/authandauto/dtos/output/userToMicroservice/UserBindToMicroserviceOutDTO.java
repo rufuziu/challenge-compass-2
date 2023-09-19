@@ -1,4 +1,4 @@
-package br.com.ms.authandauto.dtos.output;
+package br.com.ms.authandauto.dtos.output.userToMicroservice;
 
 public class UserBindToMicroserviceOutDTO {
   public UserBindToMicroserviceOutDTO() {}
@@ -25,4 +25,5 @@ public class UserBindToMicroserviceOutDTO {
   public void setNameMicroservice(String nameMicroservice) {
     this.nameMicroservice = nameMicroservice;
   }
+
 }

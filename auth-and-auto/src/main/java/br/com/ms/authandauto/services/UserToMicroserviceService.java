@@ -1,7 +1,7 @@
 package br.com.ms.authandauto.services;
 
-import br.com.ms.authandauto.dtos.input.UserBindToMicroserviceInDTO;
-import br.com.ms.authandauto.dtos.output.UserBindToMicroserviceOutDTO;
+import br.com.ms.authandauto.dtos.input.userToMicroservice.UserBindToMicroserviceInDTO;
+import br.com.ms.authandauto.dtos.output.userToMicroservice.UserBindToMicroserviceOutDTO;
 import br.com.ms.authandauto.entities.UserToMicroservice;
 import br.com.ms.authandauto.repositories.UserToMicroserviceRepository;
 import org.modelmapper.ModelMapper;

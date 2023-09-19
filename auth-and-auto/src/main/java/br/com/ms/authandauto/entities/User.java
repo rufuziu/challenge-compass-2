@@ -17,8 +17,7 @@ public class User {
   private String email;
   @Column(length = 32, nullable = false)
   private String password;
-
-  @OneToMany(mappedBy = "user")
+  @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   private Set<UserToMicroservice> microservices;
 
   public User(String name, String email, String password) {

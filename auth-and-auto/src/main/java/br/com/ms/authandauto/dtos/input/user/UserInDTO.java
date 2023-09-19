@@ -1,4 +1,4 @@
-package br.com.ms.authandauto.dtos.input;
+package br.com.ms.authandauto.dtos.input.user;
 
 import jakarta.validation.constraints.*;
 

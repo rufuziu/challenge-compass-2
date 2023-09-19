@@ -1,4 +1,4 @@
-package br.com.ms.authandauto.dtos.input;
+package br.com.ms.authandauto.dtos.input.userToMicroservice;
 
 import br.com.ms.authandauto.entities.Microservice;
 import br.com.ms.authandauto.entities.User;
