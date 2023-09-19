@@ -65,4 +65,5 @@ public class User {
   public void setMicroservices(Set<UserToMicroservice> microservices) {
     this.microservices = microservices;
   }
+
 }

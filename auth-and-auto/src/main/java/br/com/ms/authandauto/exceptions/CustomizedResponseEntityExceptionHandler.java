@@ -5,6 +5,7 @@ import br.com.ms.authandauto.exceptions.microservice.MicroserviceNotFoundExcepti
 import br.com.ms.authandauto.exceptions.user.UserAlreadyBoundedWithMicroserviceException;
 import br.com.ms.authandauto.exceptions.user.UserEmailAlreadyInUseException;
 import br.com.ms.authandauto.exceptions.user.UserNotFoundException;
+import br.com.ms.authandauto.exceptions.userToMicroservice.UserToMicroserviceNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -51,9 +52,10 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     );
     return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
   }
+
   @ExceptionHandler(UserAlreadyBoundedWithMicroserviceException.class)
   public final ResponseEntity<ErrorDetails> handleUserAlreadyBoundedWithMicroserviceException(Exception ex,
-                                                                        WebRequest request) {
+                                                                                              WebRequest request) {
     ErrorDetails errorDetails = new ErrorDetails(
             LocalDateTime.now(),
             ex.getMessage(),
@@ -61,6 +63,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     );
     return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.BAD_REQUEST);
   }
+
   @ExceptionHandler(MicroserviceNotFoundException.class)
   public final ResponseEntity<ErrorDetails> handleMicroserviceNotFoundException(Exception ex, WebRequest request) {
     ErrorDetails errorDetails = new ErrorDetails(
@@ -70,6 +73,19 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     );
     return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
   }
+
+
+  @ExceptionHandler(UserToMicroserviceNotFoundException.class)
+  public final ResponseEntity<ErrorDetails> handleUserToMicroserviceNotFoundException
+          (Exception ex, WebRequest request) {
+    ErrorDetails errorDetails = new ErrorDetails(
+            LocalDateTime.now(),
+            ex.getMessage(),
+            request.getDescription(false)
+    );
+    return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
+  }
+
   @Override
   protected ResponseEntity<Object> handleMethodArgumentNotValid(
           MethodArgumentNotValidException ex,

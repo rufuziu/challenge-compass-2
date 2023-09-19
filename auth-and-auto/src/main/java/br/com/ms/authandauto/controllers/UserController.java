@@ -1,11 +1,14 @@
 package br.com.ms.authandauto.controllers;
 
 import br.com.ms.authandauto.dtos.microservice.MicroserviceDTO;
+import br.com.ms.authandauto.dtos.microservice.output.MicroserviceAndUserRoleOutDTO;
 import br.com.ms.authandauto.dtos.user.UserDTO;
 import br.com.ms.authandauto.dtos.user.input.UserInDTO;
 import br.com.ms.authandauto.dtos.user.output.UserCreatedOutDTO;
 import br.com.ms.authandauto.dtos.user.output.UserWithMicroservisesAndRolesOutDTO;
+import br.com.ms.authandauto.dtos.userToMicroservice.UserToMicroserviceDTO;
 import br.com.ms.authandauto.dtos.userToMicroservice.input.AuthInDTO;
+import br.com.ms.authandauto.enums.ERole;
 import br.com.ms.authandauto.exceptions.user.UserAlreadyBoundedWithMicroserviceException;
 import br.com.ms.authandauto.services.MicroserviceService;
 import br.com.ms.authandauto.services.UserService;
@@ -50,8 +53,8 @@ public class UserController {
           (@PathVariable("id-user") Long idUser,
            @PathVariable("id-microservice") Long idMicroservice,
            @RequestBody AuthInDTO bindAuth) {
-    if(userToMicroserviceService
-           .existsUserBoundWithMicroservice(idUser,idMicroservice)){
+    if (userToMicroserviceService
+            .existsUserBoundWithMicroservice(idUser, idMicroservice)) {
       String message = new StringBuilder()
               .append("User id: ")
               .append(idUser)
@@ -59,14 +62,41 @@ public class UserController {
               .append(idMicroservice).toString();
       throw new UserAlreadyBoundedWithMicroserviceException(message);
     }
-      UserDTO userDTO = userService.getUserById(idUser);
-      MicroserviceDTO microserviceDTO = microserviceService
-              .getMicroserviceById(idMicroservice);
-      userToMicroserviceService.bindUserToMicroservice(
-              userDTO,
-              microserviceDTO,
-              bindAuth
+    UserDTO userDTO = userService.getUserById(idUser);
+    MicroserviceDTO microserviceDTO = microserviceService
+            .getMicroserviceById(idMicroservice);
+    userToMicroserviceService.bindUserToMicroservice(
+            userDTO,
+            microserviceDTO,
+            bindAuth
+    );
+    return ResponseEntity.ok().build();
+  }
+
+  @PutMapping("/{id-user}/microservice/{id-microservice}/role/{role}")
+  public ResponseEntity<UserWithMicroservisesAndRolesOutDTO> changeUserRole
+          (@PathVariable("id-user") Long idUser,
+           @PathVariable("id-microservice") Long idMicroservice,
+           @PathVariable("role") String role) {
+    try {
+      ERole newRole = ERole.valueOf(role.toUpperCase());
+      UserToMicroserviceDTO userToMicroserviceDTO =
+              userToMicroserviceService.changeUserRole(
+                      idUser,
+                      idMicroservice,
+                      newRole);
+      UserWithMicroservisesAndRolesOutDTO userDto =
+              new UserWithMicroservisesAndRolesOutDTO
+                      (userToMicroserviceDTO.getUser());
+      MicroserviceAndUserRoleOutDTO microserviceDto =
+              new MicroserviceAndUserRoleOutDTO(
+                      userToMicroserviceDTO.getMicroservice().getName(),
+                      userToMicroserviceDTO.getUserRole()
               );
-      return ResponseEntity.ok().build();
+      userDto.getMicroservices().add(microserviceDto);
+      return ResponseEntity.ok(userDto);
+    } catch (IllegalArgumentException e) {
+      throw new RuntimeException("Invalid role name.");
+    }
   }
 }

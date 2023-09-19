@@ -5,7 +5,6 @@ import br.com.ms.authandauto.enums.ERole;
 public class MicroserviceAndUserRoleOutDTO {
   public MicroserviceAndUserRoleOutDTO() {
   }
-
   private String name;
   private ERole roleUser;
 

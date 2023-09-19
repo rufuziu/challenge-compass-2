@@ -38,6 +38,6 @@ public class UserWithMicroservisesAndRolesOutDTO {
   public UserWithMicroservisesAndRolesOutDTO(User user) {
     this.name = user.getName();
     this.email = user.getEmail();
-    microservices = new ArrayList<>();
+    this.microservices = new ArrayList<>();
   }
 }
