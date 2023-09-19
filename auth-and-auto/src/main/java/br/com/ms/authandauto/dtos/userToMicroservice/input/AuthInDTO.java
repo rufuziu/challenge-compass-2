@@ -1,14 +1,10 @@
-package br.com.ms.authandauto.dtos.output.userToMicroservice;
+package br.com.ms.authandauto.dtos.userToMicroservice.input;
 
-public class UserBindToMicroserviceOutDTO {
-  public UserBindToMicroserviceOutDTO() {}
+public class AuthInDTO {
+  public AuthInDTO() {
+  }
   private String emailUser;
   private String nameMicroservice;
-
-  public UserBindToMicroserviceOutDTO(String emailUser, String nameMicroservice) {
-    this.emailUser = emailUser;
-    this.nameMicroservice = nameMicroservice;
-  }
 
   public String getEmailUser() {
     return emailUser;
@@ -26,4 +22,8 @@ public class UserBindToMicroserviceOutDTO {
     this.nameMicroservice = nameMicroservice;
   }
 
+  public AuthInDTO(String emailUser, String nameMicroservice) {
+    this.emailUser = emailUser;
+    this.nameMicroservice = nameMicroservice;
+  }
 }

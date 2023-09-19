@@ -1,4 +1,4 @@
-package br.com.ms.authandauto.dtos.output.user;
+package br.com.ms.authandauto.dtos.user.output;
 public class UserCreatedOutDTO {
   public UserCreatedOutDTO() {}
   private Long id;

@@ -1,10 +1,11 @@
-package br.com.ms.authandauto.dtos.output.microservice;
+package br.com.ms.authandauto.dtos.microservice.output;
 
 import br.com.ms.authandauto.enums.ERole;
 
-public class MicroserviceOutDTO {
-  public MicroserviceOutDTO() {
+public class MicroserviceAndUserRoleOutDTO {
+  public MicroserviceAndUserRoleOutDTO() {
   }
+
   private String name;
   private ERole roleUser;
 
@@ -24,8 +25,7 @@ public class MicroserviceOutDTO {
     this.roleUser = roleUser;
   }
 
-  public MicroserviceOutDTO(String name,
-                            ERole roleUser) {
+  public MicroserviceAndUserRoleOutDTO(String name, ERole roleUser) {
     this.name = name;
     this.roleUser = roleUser;
   }

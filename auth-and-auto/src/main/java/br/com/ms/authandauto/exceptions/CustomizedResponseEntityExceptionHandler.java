@@ -2,6 +2,7 @@ package br.com.ms.authandauto.exceptions;
 
 import br.com.ms.authandauto.exceptions.errors.ErrorDetails;
 import br.com.ms.authandauto.exceptions.microservice.MicroserviceNotFoundException;
+import br.com.ms.authandauto.exceptions.user.UserAlreadyBoundedWithMicroserviceException;
 import br.com.ms.authandauto.exceptions.user.UserEmailAlreadyInUseException;
 import br.com.ms.authandauto.exceptions.user.UserNotFoundException;
 import org.springframework.http.HttpHeaders;
@@ -49,6 +50,16 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
             request.getDescription(false)
     );
     return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
+  }
+  @ExceptionHandler(UserAlreadyBoundedWithMicroserviceException.class)
+  public final ResponseEntity<ErrorDetails> handleUserAlreadyBoundedWithMicroserviceException(Exception ex,
+                                                                        WebRequest request) {
+    ErrorDetails errorDetails = new ErrorDetails(
+            LocalDateTime.now(),
+            ex.getMessage(),
+            request.getDescription(false)
+    );
+    return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.BAD_REQUEST);
   }
   @ExceptionHandler(MicroserviceNotFoundException.class)
   public final ResponseEntity<ErrorDetails> handleMicroserviceNotFoundException(Exception ex, WebRequest request) {
