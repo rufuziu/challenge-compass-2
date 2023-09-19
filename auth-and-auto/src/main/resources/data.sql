@@ -32,3 +32,18 @@ INSERT INTO microservices (name) VALUES('ms-e');
 INSERT INTO microservices (name) VALUES('ms-f');
 
 INSERT INTO microservices (name) VALUES('ms-g');
+
+INSERT INTO users_to_microservices(user_id,microservice_id,user_role)
+VALUES(1,1,1);
+INSERT INTO users_to_microservices(user_id,microservice_id,user_role)
+VALUES(2,2,1);
+INSERT INTO users_to_microservices(user_id,microservice_id,user_role)
+VALUES(3,3,1);
+INSERT INTO users_to_microservices(user_id,microservice_id,user_role)
+VALUES(4,4,1);
+INSERT INTO users_to_microservices(user_id,microservice_id,user_role)
+VALUES(5,5,1);
+INSERT INTO users_to_microservices(user_id,microservice_id,user_role)
+VALUES(6,6,1);
+INSERT INTO users_to_microservices(user_id,microservice_id,user_role)
+VALUES(7,7,1);

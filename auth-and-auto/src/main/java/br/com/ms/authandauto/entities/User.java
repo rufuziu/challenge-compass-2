@@ -3,6 +3,8 @@ package br.com.ms.authandauto.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity(name="users")
 public class User {
   public User() { }
@@ -15,6 +17,9 @@ public class User {
   private String email;
   @Column(length = 32, nullable = false)
   private String password;
+
+  @OneToMany(mappedBy = "user")
+  private Set<UserToMicroservice> microservices;
 
   public User(String name, String email, String password) {
     this.name = name;
@@ -52,5 +57,13 @@ public class User {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public Set<UserToMicroservice> getMicroservices() {
+    return microservices;
+  }
+
+  public void setMicroservices(Set<UserToMicroservice> microservices) {
+    this.microservices = microservices;
   }
 }
