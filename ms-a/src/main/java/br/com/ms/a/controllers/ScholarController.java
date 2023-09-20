@@ -1,7 +1,7 @@
 package br.com.ms.a.controllers;
 
 import br.com.ms.a.dtos.MicroserviceDTO;
-import br.com.ms.a.dtos.output.UserWithMicroservisesAndRolesOutDTO;
+import br.com.ms.a.dtos.output.UserWithMicroservicesAndRolesOutDTO;
 import br.com.ms.a.proxy.MsAProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ public class ScholarController {
   @Autowired
   MsAProxy msAProxy;
   @GetMapping()
-  public List<UserWithMicroservisesAndRolesOutDTO> getUsers()
+  public List<UserWithMicroservicesAndRolesOutDTO> getUsers()
   {
     return msAProxy.getAllUsersWithMicroservicesAndRoles();
   }
