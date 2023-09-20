@@ -27,7 +27,7 @@ public class MicroserviceService {
               .append(microserviceId).toString();
       throw new MicroserviceNotFoundException(message);
     } else {
-      List<UserWithRoleDTO> users = ms.get().getUsers().stream().map(
+      List<UserWithRoleDTO> users = ms.get().getRelationships().stream().map(
               u -> new UserWithRoleDTO(u.getUser().getName(),
                       u.getUserRole())).toList();
       MicroserviceDTO msDto =

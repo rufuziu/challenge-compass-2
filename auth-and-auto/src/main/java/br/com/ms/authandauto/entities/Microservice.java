@@ -1,10 +1,12 @@
 package br.com.ms.authandauto.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.Set;
 
 @Entity(name="microservices")
+@JsonIgnoreProperties("relationships")
 public class Microservice {
   public Microservice(){}
   @Id
@@ -13,7 +15,7 @@ public class Microservice {
   @Column(length = 16, nullable = false)
   private String name;
   @OneToMany(mappedBy = "microservice", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-  private Set<UserToMicroservice> users;
+  private Set<UserToMicroservice> relationships;
 
   public Long getId() {
     return id;
@@ -31,11 +33,11 @@ public class Microservice {
     this.name = name;
   }
 
-  public Set<UserToMicroservice> getUsers() {
-    return users;
+  public Set<UserToMicroservice> getRelationships() {
+    return relationships;
   }
 
-  public void setUsers(Set<UserToMicroservice> users) {
-    this.users = users;
+  public void setRelationships(Set<UserToMicroservice> relationships) {
+    this.relationships = relationships;
   }
 }

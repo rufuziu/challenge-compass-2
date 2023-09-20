@@ -1,10 +1,11 @@
 package br.com.ms.authandauto.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.Set;
-
+@JsonIgnoreProperties("relationships")
 @Entity(name="users")
 public class User {
   public User() {}
@@ -18,7 +19,7 @@ public class User {
   @Column(length = 32, nullable = false)
   private String password;
   @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-  private Set<UserToMicroservice> microservices;
+  private Set<UserToMicroservice> relationships;
 
   public User(String name, String email, String password) {
     this.name = name;
@@ -58,12 +59,12 @@ public class User {
     this.password = password;
   }
 
-  public Set<UserToMicroservice> getMicroservices() {
-    return microservices;
+  public Set<UserToMicroservice> getRelationships() {
+    return relationships;
   }
 
-  public void setMicroservices(Set<UserToMicroservice> microservices) {
-    this.microservices = microservices;
+  public void setRelationships(Set<UserToMicroservice> relationships) {
+    this.relationships = relationships;
   }
 
 }

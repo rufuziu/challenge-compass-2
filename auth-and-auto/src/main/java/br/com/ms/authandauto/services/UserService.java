@@ -49,7 +49,7 @@ public class UserService {
     users.forEach(u -> {
       UserWithMicroservisesAndRolesOutDTO uDto =
               new UserWithMicroservisesAndRolesOutDTO(u);
-      u.getMicroservices()
+      u.getRelationships()
               .forEach(ms -> {
                 MicroserviceAndUserRoleOutDTO msDto = new
                         MicroserviceAndUserRoleOutDTO(

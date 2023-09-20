@@ -1,6 +1,7 @@
 package br.com.ms.authandauto.dtos.microservice;
 
 import br.com.ms.authandauto.dtos.user.output.UserWithRoleDTO;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,9 @@ public class MicroserviceDTO {
   public MicroserviceDTO() {
     users = new ArrayList<>();
   }
+  @JsonProperty("microserviceId")
   private Long id;
+  @JsonProperty("microserviceName")
   private String name;
   private List<UserWithRoleDTO> users;
 

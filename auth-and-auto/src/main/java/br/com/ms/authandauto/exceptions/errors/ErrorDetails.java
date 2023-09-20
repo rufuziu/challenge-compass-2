@@ -3,9 +3,7 @@ package br.com.ms.authandauto.exceptions.errors;
 import java.time.LocalDateTime;
 
 public class ErrorDetails {
-  public ErrorDetails() {
-  }
-
+  public ErrorDetails() {}
   private LocalDateTime timestamp;
   private String message;
   private String details;
