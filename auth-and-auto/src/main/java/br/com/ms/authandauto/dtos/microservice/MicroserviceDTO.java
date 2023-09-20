@@ -1,10 +1,17 @@
 package br.com.ms.authandauto.dtos.microservice;
 
+import br.com.ms.authandauto.dtos.user.output.UserWithRoleDTO;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class MicroserviceDTO {
   public MicroserviceDTO() {
+    users = new ArrayList<>();
   }
   private Long id;
   private String name;
+  private List<UserWithRoleDTO> users;
 
   public Long getId() {
     return id;
@@ -25,5 +32,13 @@ public class MicroserviceDTO {
   public MicroserviceDTO(Long id, String name) {
     this.id = id;
     this.name = name;
+  }
+
+  public List<UserWithRoleDTO> getUsers() {
+    return users;
+  }
+
+  public void setUsers(List<UserWithRoleDTO> users) {
+    this.users = users;
   }
 }
