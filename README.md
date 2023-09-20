@@ -1,5 +1,3 @@
-Claro, aqui está o texto com a alteração:
-
 # ms-scholar-f
 
 Este projeto utiliza a anotação `@FeignClient` para consumir a API principal em uma interface. O `@FeignClient` é configurado com o nome do microserviço e a URL principal. Com o uso de métodos de busca específicos, os dados de usuários e microserviços são recuperados por meio do nosso microserviço.
