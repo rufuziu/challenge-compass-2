@@ -1,12 +1,11 @@
 package br.com.ms.authandauto.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.Set;
 
 @Entity(name="microservices")
-@JsonIgnoreProperties("relationships")
+//@JsonIgnoreProperties("relationships")
 public class Microservice {
   public Microservice(){}
   @Id
