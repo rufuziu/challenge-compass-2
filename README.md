@@ -1,10 +1,31 @@
-﻿# ms-a
+﻿# CHALLENGE 2 - WEEK 08: 
 
- Foi utilizado o @FeignClient para consumir a api princial na interface, com nome do microserve e a url principal e com os uso dos metodos de captura é retornado os usuários e microserviços através do nosso microservice.
+"Projeto de Microsserviços com Integrações Específicas"
 
- Foram criados os Controllers, Dtos, Services, Role e interface. 
- Aonde o role é responsável pela regra aplicada no user e admin, com a camada de segurança Dto.
- Utilizado o controller para que faça a requisição e receba as camadas Dtos com somente os retornos que desejamos que retornassemos.
- Services para regra de negocio e comunicação entre as camadas.
+Esse é um projeto utilizando Java + SpringBoot + OpenFeign  
+para demonstração de um serviço de autenticação e autorização.
 
- 
+## Instruções
+
+O serviço na branch main está sendo disponibilizado para utilização  
+com o banco de dados de memória local H2. 
+Na branch dev o serviço está sendo disponibilizado para utilizar com  
+o serviço de banco de dados PostgreSQL.
+
+### Pré-requisitos
+
+- Java SDK 17
+- SGBD PostgreSQL 16.0
+- Docker
+
+## Testes
+
+Os testes estão com 61%class 50%method 38%line de cobertura.
+
+
+### Documentação API
+
+O serviço está com todos os microsserviços documentados  
+em OpenAPI(SWAGGER).
+
+http://localhost:[porta_microsserviço].com/swagger-ui/index.html
