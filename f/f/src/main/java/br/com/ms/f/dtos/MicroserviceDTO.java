@@ -1,10 +1,11 @@
 package br.com.ms.f.dtos;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MicroserviceDTO {
   private Long id;
+
   private String name;
   private List<UserWithRoleDTO> users;
 
