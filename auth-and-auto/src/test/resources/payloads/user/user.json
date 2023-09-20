@@ -3,7 +3,7 @@
   "email": "email1@compasso.com.br",
   "name": "user 1",
   "password": "123",
-  "microservices": [
+  "relationships": [
     {
       "id": 1,
       "user": {
@@ -11,12 +11,12 @@
         "email": "email1@compasso.com.br",
         "name": "user 1",
         "password": "123",
-        "microservices":  null
+        "relationships":  []
       },
       "microservice": {
         "id": 1,
         "name": "ms-a",
-        "users": null
+        "relationships": []
       },
       "userRole": "ADMIN"
     }

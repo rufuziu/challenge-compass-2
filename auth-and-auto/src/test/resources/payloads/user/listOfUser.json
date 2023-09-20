@@ -4,7 +4,7 @@
     "email": "email1@compasso.com.br",
     "name": "user 1",
     "password": "123",
-    "microservices": [
+    "relationships": [
       {
         "id": 1,
         "user": {
@@ -12,12 +12,12 @@
           "email": "email1@compasso.com.br",
           "name": "user 1",
           "password": "123",
-          "microservices":  null
+          "relationships":  []
         },
         "microservice": {
           "id": 1,
           "name": "ms-a",
-          "users": null
+          "relationships": []
         },
         "userRole": "ADMIN"
       }
@@ -28,7 +28,7 @@
     "email": "email2@compasso.com.br",
     "name": "user 2",
     "password": "123",
-    "microservices": [
+    "relationships": [
       {
         "id": 1,
         "user": {
@@ -36,12 +36,12 @@
           "email": "email2@compasso.com.br",
           "name": "user 2",
           "password": "123",
-          "microservices": null
+          "relationships": []
         },
         "microservice": {
           "id": 2,
           "name": "ms-b",
-          "users": null
+          "relationships": []
         },
         "userRole": "ADMIN"
       }
