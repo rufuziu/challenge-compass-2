@@ -1,20 +1,54 @@
 [
   {
     "id": 1,
-    "name": "Test1",
-    "email": "test1@email.com",
-    "password": "123456"
+    "email": "email1@compasso.com.br",
+    "name": "user 1",
+    "password": "123",
+    "microservices": [
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "email": "email1@compasso.com.br",
+          "name": "user 1",
+          "password": "123",
+          "microservices":  null
+        },
+        "microservice": {
+          "id": 1,
+          "name": "ms-a",
+          "users": null
+        },
+        "userRole": "ADMIN"
+      }
+    ]
   },
   {
     "id": 2,
-    "name": "Test2",
-    "email": "test2@email.com",
-    "password": "123456"
-  },
-  {
-    "id": 3,
-    "name": "Test3",
-    "email": "test3@email.com",
-    "password": "123456"
+    "email": "email2@compasso.com.br",
+    "name": "user 2",
+    "password": "123",
+    "microservices": [
+      {
+        "id": 1,
+        "user": {
+          "id": 2,
+          "email": "email2@compasso.com.br",
+          "name": "user 2",
+          "password": "123",
+          "microservices": null
+        },
+        "microservice": {
+          "id": 2,
+          "name": "ms-b",
+          "users": null
+        },
+        "userRole": "ADMIN"
+      }
+    ]
   }
 ]
+
+
+
+

@@ -49,7 +49,9 @@ public class UserToMicroservice {
     this.userRole = userRole;
   }
 
-  public UserToMicroservice(User user, Microservice microservice, ERole userRole) {
+  public UserToMicroservice(User user,
+                            Microservice microservice,
+                            ERole userRole) {
     this.user = user;
     this.microservice = microservice;
     this.userRole = userRole;

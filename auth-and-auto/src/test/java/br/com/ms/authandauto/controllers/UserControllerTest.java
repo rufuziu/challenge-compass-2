@@ -1,7 +1,7 @@
 package br.com.ms.authandauto.controllers;
 
-import br.com.ms.authandauto.dtos.input.UserInDTO;
-import br.com.ms.authandauto.dtos.output.UserOutDTO;
+import br.com.ms.authandauto.dtos.user.input.UserInDTO;
+import br.com.ms.authandauto.dtos.user.output.UserCreatedOutDTO;
 import br.com.ms.authandauto.entities.User;
 import br.com.ms.authandauto.services.UserService;
 import br.com.ms.authandauto.utils.JsonUtils;
@@ -46,7 +46,7 @@ class UserControllerTest {
     String payload = JsonUtils.readFileAsString(USER);
     User user = JsonUtils.getObjectFromFile(USER, User.class);
     UserInDTO userIn = modelMapper.map(USER, UserInDTO.class);
-    UserOutDTO userOut = modelMapper.map(USER, UserOutDTO.class);
+    UserCreatedOutDTO userOut = modelMapper.map(USER, UserCreatedOutDTO.class);
     when(userService.createUser(any())).thenReturn(userOut);
     //then
     MockHttpServletRequestBuilder builder = post("/api/users/")
@@ -54,5 +54,17 @@ class UserControllerTest {
             .contentType(MediaType.APPLICATION_JSON);
     mockMvc.perform(builder)
             .andExpect(MockMvcResultMatchers.status().isOk());
+  }
+
+  @Test
+  void getAllUsersWithMicroservicesAndRoles() {
+  }
+
+  @Test
+  void bindUserToService() {
+  }
+
+  @Test
+  void changeUserRole() {
   }
 }

@@ -1,5 +1,6 @@
 package br.com.ms.authandauto.services;
 
+import br.com.ms.authandauto.dtos.microservice.MicroserviceDTO;
 import br.com.ms.authandauto.entities.Microservice;
 import br.com.ms.authandauto.exceptions.microservice.MicroserviceNotFoundException;
 import br.com.ms.authandauto.repositories.MicroserviceRepository;
@@ -30,12 +31,15 @@ class MicroserviceServiceTest {
   private static final String MICROSERVICE = "payloads/microservice/microservice.json";
 
   @Test
-  void findById() throws IOException {
+  void getMicroserviceById() throws IOException {
     //given
-    Microservice ms = JsonUtils.getObjectFromFile(MICROSERVICE, Microservice.class);
-    when(microserviceRepository.findById(any())).thenReturn(Optional.of(ms));
+    Microservice ms = JsonUtils.getObjectFromFile(MICROSERVICE,
+            Microservice.class);
+    when(microserviceRepository.findById(any()))
+            .thenReturn(Optional.of(ms));
     //then
-    Microservice response = microserviceService.findById(ms.getId());
+    MicroserviceDTO response = microserviceService
+            .getMicroserviceById(1L);
     //verify
     assertAll("Microservice findById Payload",
             () -> assertEquals(1, response.getId()),
@@ -49,6 +53,7 @@ class MicroserviceServiceTest {
             .thenReturn(Optional.empty());
     //then
     assertThrows(MicroserviceNotFoundException.class,
-            () -> microserviceService.findById(1L));
+            () -> microserviceService
+                    .getMicroserviceById(1L));
   }
 }

@@ -1,7 +1,9 @@
 package br.com.ms.authandauto.services;
 
-import br.com.ms.authandauto.dtos.input.UserInDTO;
-import br.com.ms.authandauto.dtos.output.UserOutDTO;
+import br.com.ms.authandauto.dtos.user.UserDTO;
+import br.com.ms.authandauto.dtos.user.input.UserInDTO;
+import br.com.ms.authandauto.dtos.user.output.UserCreatedOutDTO;
+import br.com.ms.authandauto.dtos.user.output.UserWithMicroservisesAndRolesOutDTO;
 import br.com.ms.authandauto.entities.User;
 import br.com.ms.authandauto.exceptions.user.UserEmailAlreadyInUseException;
 import br.com.ms.authandauto.repositories.UserRepository;
@@ -31,55 +33,79 @@ class UserServiceTest {
   @Spy
   private ModelMapper modelMapper;
 
-  private static final String USER = "payloads/user/createUser.json";
+  private static final String CREATE_USER = "payloads/user/createUser.json";
   private static final String USERS = "payloads/user/listOfUser.json";
-
+  private static final String USER =
+          "payloads/user/user.json";
 
   @Test
   void createUser() throws IOException {
     //given
-    User user = JsonUtils.getObjectFromFile(USER, User.class);
+    User user = JsonUtils.getObjectFromFile(CREATE_USER, User.class);
     UserInDTO userIn = modelMapper.map(user, UserInDTO.class);
-    UserOutDTO userOut = modelMapper.map(user, UserOutDTO.class);
+    UserCreatedOutDTO userOut = modelMapper.map(user, UserCreatedOutDTO.class);
     when(userRepository.findByEmail(any())).thenReturn(Optional.empty());
     when(userRepository.save(any())).thenReturn(user);
     //then
-    UserOutDTO response = userService.createUser(userIn);
+    UserCreatedOutDTO response = userService.createUser(userIn);
     //verify
     assertAll("User created Payload",
             () -> assertEquals(1, response.getId()),
             () -> assertEquals("Test", response.getName()),
             () -> assertEquals("test@email.com", response.getEmail()));
   }
+
   @Test
   void userEmailAlreadyInUse() throws IOException {
     //given
-    User user = JsonUtils.getObjectFromFile(USER, User.class);
+    User user = JsonUtils.getObjectFromFile(CREATE_USER, User.class);
     UserInDTO userIn = modelMapper.map(user, UserInDTO.class);
     when(userRepository.findByEmail(any()))
             .thenReturn(Optional.of(user));
     //then
     assertThrows(UserEmailAlreadyInUseException.class,
-            ()-> userService.createUser(userIn));
+            () -> userService.createUser(userIn));
   }
 
   @Test
-  void getAllUsers() throws IOException {
+  void getAllUsersWithMicroservicesAndRoles() throws IOException {
     //given
-    List<User> users = JsonUtils.getListOfObjectFromFile(USERS, User.class);
-//    List<UserDTO> usersDTO = users.stream().map(
-//            u->modelMapper.map(u,UserDTO.class))
-//            .toList();
+    List<User> users = JsonUtils.getListOfObjectFromFile(
+            USERS,
+            User.class);
+    //infinite loop on tables
     when(userRepository.findAll()).thenReturn(users);
     //then
-    List<User> response = userService.getAllUsers();
+    List<UserWithMicroservisesAndRolesOutDTO> response =
+            userService.getAllUsersWithMicroservicesAndRoles();
     //verify
     assertAll("User List Payload",
-            () -> assertEquals(3, response.size()),
-            () -> assertEquals(2, response.get(1).getId()));
+            () -> assertEquals(2, response.size()),
+            () -> assertEquals("user 2",
+                    response.get(1).getName()),
+            () -> assertEquals("ADMIN",
+                    response.get(1).getMicroservices()
+                            .get(0).getRoleUser().name())
+    );
   }
 
   @Test
-  void getUserById() {
+  void getUserById() throws IOException {
+    //given
+    User user = JsonUtils.getObjectFromFile(USER, User.class);
+    when(userRepository.findById(any()))
+            .thenReturn(Optional.ofNullable(user));
+    //then
+    UserDTO response = userService.getUserById(1L);
+    //verify
+    assertAll("User created Payload",
+            () -> assertEquals(1, response.getId()),
+            () -> assertEquals("user 1", response.getName()),
+            () -> assertEquals("email1@compasso.com.br",
+                    response.getEmail())
+//            ,
+//            () -> assertEquals("ms-a",
+//                    response.getMicroservices().get(0).getName())
+    );
   }
 }
