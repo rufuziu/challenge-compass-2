@@ -1,8 +1,8 @@
 package br.com.ms.authandauto.services;
 
+import br.com.ms.authandauto.dtos.microservice.output.MicroserviceAndUserRoleOutDTO;
 import br.com.ms.authandauto.dtos.user.UserDTO;
 import br.com.ms.authandauto.dtos.user.input.UserInDTO;
-import br.com.ms.authandauto.dtos.microservice.output.MicroserviceAndUserRoleOutDTO;
 import br.com.ms.authandauto.dtos.user.output.UserCreatedOutDTO;
 import br.com.ms.authandauto.dtos.user.output.UserWithMicroservisesAndRolesOutDTO;
 import br.com.ms.authandauto.entities.User;

@@ -50,10 +50,9 @@ public class UserController {
 
   @GetMapping("/microservice/{id-microservice}")
   public ResponseEntity<MicroserviceDTO> getMicroserviceAndUsers
-          (@PathVariable("id-microservice")Long idMicroservice)
-  {
-    MicroserviceDTO msDto = microserviceService.getMicroserviceById(idMicroservice);
-    return ResponseEntity.ok(msDto);
+          (@PathVariable("id-microservice") Long idMicroservice) {
+    return ResponseEntity
+            .ok(microserviceService.getMicroserviceById(idMicroservice));
   }
 
   @PutMapping("/{id-user}/microservice/{id-microservice}")
