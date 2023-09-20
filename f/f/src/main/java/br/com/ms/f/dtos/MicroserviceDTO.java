@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MicroserviceDTO {
+  @JsonProperty("microserviceId")
   private Long id;
-
+  @JsonProperty("microserviceName")
   private String name;
   private List<UserWithRoleDTO> users;
 
