@@ -1,4 +1,4 @@
-package br.com.ms.b.dtos.output;
+package br.com.ms.f.dtos.output;
 
 public class UserOutDto {
    public UserOutDto(){}

@@ -1,6 +1,6 @@
-package br.com.ms.b.dtos;
+package br.com.ms.f.dtos;
 
-import br.com.ms.b.enums.RoleEnum;
+import br.com.ms.f.enums.RoleEnum;
 
 public class MicroserviceDto {
   private String name;

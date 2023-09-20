@@ -1,4 +1,4 @@
-package br.com.ms.b.dtos;
+package br.com.ms.f.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

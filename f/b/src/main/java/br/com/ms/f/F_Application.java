@@ -1,4 +1,4 @@
-package br.com.ms.b;
+package br.com.ms.f;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,6 +1,6 @@
-package br.com.ms.b.proxy;
+package br.com.ms.f.proxy;
 
-import br.com.ms.b.dtos.UserDto;
+import br.com.ms.f.dtos.UserDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 

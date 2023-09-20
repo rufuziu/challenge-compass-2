@@ -1,4 +1,4 @@
-package br.com.ms.b;
+package br.com.ms.f;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

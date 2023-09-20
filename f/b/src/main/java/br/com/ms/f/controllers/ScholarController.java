@@ -1,8 +1,7 @@
-package br.com.ms.b.controllers;
+package br.com.ms.f.controllers;
 
-import br.com.ms.b.dtos.UserDto;
-import br.com.ms.b.dtos.output.UserOutDto;
-import br.com.ms.b.proxy.MsBProxy;
+import br.com.ms.f.dtos.UserDto;
+import br.com.ms.f.proxy.MsBProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
